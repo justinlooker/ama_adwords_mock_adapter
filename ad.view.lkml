@@ -106,6 +106,7 @@ view: ad_adapter {
   dimension: creative_final_urls {
     hidden: yes
     type: string
+    sql: ${TABLE}.CreativeFinalUrls ;;
     group_label: "URLS"
   }
 
@@ -181,21 +182,25 @@ view: ad_adapter {
 
   dimension: headline {
     type: string
+    sql: ${TABLE}.Headline;;
     group_label: "Headline"
   }
 
   dimension: headline_part1 {
     type: string
+    sql: ${TABLE}.HeadlinePart1 ;;
     group_label: "Headline"
   }
 
   dimension: headline_part2 {
     type: string
+    sql: ${TABLE}.HeadlinePart2 ;;
     group_label: "Headline"
   }
 
   dimension: image_ad_url {
     type: string
+    sql: ${TABLE}.ImageAdUrl ;;
     group_label: "URLS"
   }
 
