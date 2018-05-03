@@ -84,6 +84,7 @@ view: campaign_adapter {
 
   dimension: campaign_name {
     type: string
+    sql: ${TABLE}.CampaignName ;;
     link: {
       label: "Campaign Dashboard"
       url: "/dashboards/marketing_analytics::campaign_metrics_cost_per_conversion?Campaign={{ value | encode_uri }}"
