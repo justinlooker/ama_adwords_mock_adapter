@@ -1,4 +1,5 @@
 include: "/app_marketing_analytics_config/adwords_config.view"
+
 include: "google_adwords_base.view"
 
 explore: customer {

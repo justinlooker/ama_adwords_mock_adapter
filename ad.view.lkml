@@ -1,4 +1,5 @@
 include: "/app_marketing_analytics_config/adwords_config.view"
+
 include: "ad_group.view"
 
 explore: ad_adapter {
