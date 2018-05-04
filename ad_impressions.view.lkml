@@ -68,6 +68,7 @@ explore: ad_impressions_adapter {
   view_label: "Ad Impressions"
   from: ad_impressions_adapter
   view_name: fact
+  hidden: yes
 
   join: customer {
     from: customer_adapter
