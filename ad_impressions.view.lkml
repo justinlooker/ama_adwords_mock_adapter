@@ -366,14 +366,14 @@ explore: ad_impressions_age_range_adapter {
   from: ad_impressions_age_range_adapter
   view_name: fact
 
-  join: age_range {
+  join: criteria {
     from: age_range_adapter
     view_label: "Age Range"
-    sql_on: ${fact.criterion_id} = ${age_range.criterion_id} AND
-      ${fact.ad_group_id} = ${age_range.ad_group_id} AND
-      ${fact.campaign_id} = ${age_range.campaign_id} AND
-      ${fact.external_customer_id} = ${age_range.external_customer_id} AND
-      ${fact._date} = ${age_range._date} ;;
+    sql_on: ${fact.criterion_id} = ${criteria.criterion_id} AND
+      ${fact.ad_group_id} = ${criteria.ad_group_id} AND
+      ${fact.campaign_id} = ${criteria.campaign_id} AND
+      ${fact.external_customer_id} = ${criteria.external_customer_id} AND
+      ${fact._date} = ${criteria._date} ;;
     relationship: many_to_one
   }
 }
@@ -388,14 +388,14 @@ explore: ad_impressions_audience_adapter {
   from: ad_impressions_audience_adapter
   view_name: fact
 
-  join: audience {
+  join: criteria {
     from: audience_adapter
     view_label: "Audience"
-    sql_on: ${fact.criterion_id} = ${audience.criterion_id} AND
-      ${fact.ad_group_id} = ${audience.ad_group_id} AND
-      ${fact.campaign_id} = ${audience.campaign_id} AND
-      ${fact.external_customer_id} = ${audience.external_customer_id} AND
-      ${fact._date} = ${audience._date} ;;
+    sql_on: ${fact.criterion_id} = ${criteria.criterion_id} AND
+      ${fact.ad_group_id} = ${criteria.ad_group_id} AND
+      ${fact.campaign_id} = ${criteria.campaign_id} AND
+      ${fact.external_customer_id} = ${criteria.external_customer_id} AND
+      ${fact._date} = ${criteria._date} ;;
     relationship: many_to_one
   }
 }
@@ -410,14 +410,14 @@ explore: ad_impressions_gender_adapter {
   from: ad_impressions_gender_adapter
   view_name: fact
 
-  join: gender {
+  join: criteria {
     from: gender_adapter
     view_label: "Gender"
-    sql_on: ${fact.criterion_id} = ${gender.criterion_id} AND
-      ${fact.ad_group_id} = ${gender.ad_group_id} AND
-      ${fact.campaign_id} = ${gender.campaign_id} AND
-      ${fact.external_customer_id} = ${gender.external_customer_id} AND
-      ${fact._date} = ${gender._date} ;;
+    sql_on: ${fact.criterion_id} = ${criteria.criterion_id} AND
+      ${fact.ad_group_id} = ${criteria.ad_group_id} AND
+      ${fact.campaign_id} = ${criteria.campaign_id} AND
+      ${fact.external_customer_id} = ${criteria.external_customer_id} AND
+      ${fact._date} = ${criteria._date} ;;
     relationship: many_to_one
   }
 }
@@ -432,14 +432,14 @@ explore: ad_impressions_parental_status_adapter {
   from: ad_impressions_parental_status_adapter
   view_name: fact
 
-  join: parental_status {
+  join: criteria {
     from: parental_status_adapter
     view_label: "Parental Status"
-    sql_on: ${fact.criterion_id} = ${parental_status.criterion_id} AND
-      ${fact.ad_group_id} = ${parental_status.ad_group_id} AND
-      ${fact.campaign_id} = ${parental_status.campaign_id} AND
-      ${fact.external_customer_id} = ${parental_status.external_customer_id} AND
-      ${fact._date} = ${parental_status._date} ;;
+    sql_on: ${fact.criterion_id} = ${criteria.criterion_id} AND
+      ${fact.ad_group_id} = ${criteria.ad_group_id} AND
+      ${fact.campaign_id} = ${criteria.campaign_id} AND
+      ${fact.external_customer_id} = ${criteria.external_customer_id} AND
+      ${fact._date} = ${criteria._date} ;;
     relationship: many_to_one
   }
 }
