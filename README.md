@@ -22,6 +22,106 @@ view: adwords_config {
 }
 ```
 
+### Interface
+#### Account Structure
+
+ad.view:
+ - ad_adapter
+   - external_customer_id
+   - campaign_id
+   - ad_group_id
+   - creative_id
+   - creative
+   - status_active
+
+ad_group.view:
+ - ad_group_adapter
+   - external_customer_id
+   - campaign_id
+   - ad_group_id
+   - ad_group_name
+   - status_active
+
+campaign.view:
+ - campaign_adapter
+   - external_customer_id
+   - campaign_id
+   - campaign_name
+   - status_active
+
+customer.view:
+ - customer_adapter
+   - external_customer_id
+
+#### Targeting Criteria
+
+age_range.view
+ - age_range
+
+audience.view
+ - audience_adapter
+
+gender.view
+ - gender_adapter
+
+geo.view
+ - geotargeting
+   - state
+   - country_code
+   - name
+   - postal_code
+
+keyword.view
+ - keyword_adapter
+   - external_customer_id
+   - campaign_id
+   - ad_group_id
+   - criterion_id
+   - criteria
+   - status_active
+
+parental_status.view
+ - parental_status
+
+video.view
+ - video
+
+#### Reports
+
+ad_impressions.view
+ - cost
+ - impressions
+ - interactions
+ - clicks
+ - conversions
+ - conversionvalue
+ - averageposition
+
+Account Stats
+ - ad_impressions_adapter
+ - ad_impressions_hour_adapter
+   - hour_of_day
+
+Campaign Stats
+ - ad_impressions_campaign_adapter
+ - ad_impressions_campaign_hour_adapter
+   - hour_of_day
+
+Ad Group Stats
+ - ad_impressions_ad_group_adapter
+ - ad_impressions_ad_group_hour_adapter
+   - hour_of_day
+
+Keyword Stats
+ - ad_impressions_keyword_adapter
+
+Ad Stats
+ - ad_impressions_ad_adapter
+
+Targeting Reports
+ - ad_impressions * [age_range, audience, gender, geo, parental_status, video]
+
+
 ### Block Info
 
 This Block is modeled on the schema from Google's [BigQuery Transfer Service](https://cloud.google.com/bigquery/transfer/).
