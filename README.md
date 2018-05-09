@@ -48,6 +48,8 @@ campaign.view:
    - campaign_id
    - campaign_name
    - status_active
+   - budget_id
+   - amount
 
 customer.view:
  - customer_adapter
@@ -79,6 +81,7 @@ keyword.view
    - criterion_id
    - criteria
    - status_active
+   - bidding_strategy_type
 
 parental_status.view
  - parental_status
@@ -89,6 +92,9 @@ video.view
 #### Reports
 
 ad_impressions.view
+ - _date
+ - ad_network_type
+ - device_type
  - cost
  - impressions
  - interactions
