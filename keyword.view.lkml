@@ -69,9 +69,32 @@ view: keyword_adapter {
     sql: ${TABLE}.BiddingStrategySource ;;
   }
 
-  dimension: bidding_strategy_type {
+  dimension: bidding_strategy {
     type: string
     sql: ${TABLE}.BiddingStrategyType ;;
+    }
+
+  dimension: bidding_strategy_type {
+    type: string
+    case: {
+      when: {
+        sql: ${bidding_strategy} = 'Target CPA' ;;
+        label: "Target CPA"
+      }
+      when: {
+        sql: ${bidding_strategy} = 'Enhanced CPC';;
+        label: "Enhanced CPC"
+      }
+      when: {
+        sql: ${bidding_strategy} = 'cpc' ;;
+        label: "CPC"
+      }
+      when: {
+        sql: ${bidding_strategy} = 'cpv' ;;
+        label: "CPV"
+      }
+      else: "Other"
+    }
   }
 
   dimension: campaign_id {
