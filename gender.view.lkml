@@ -3,6 +3,7 @@ include: "/app_marketing_analytics_config/adwords_config.view"
 include: "criteria_base.view"
 
 explore: gender_adapter {
+  persist_with: adwords_etl_datagroup
   extends: [criteria_joins_base]
   from: gender_adapter
   view_label: "Gender"

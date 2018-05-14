@@ -64,6 +64,7 @@ view: transformations_base {
 }
 
 explore: ad_impressions_adapter {
+  persist_with: adwords_etl_datagroup
   label: "Ad Impressions"
   view_label: "Ad Impressions"
   from: ad_impressions_adapter
@@ -193,6 +194,7 @@ view: ad_impressions_adapter {
 }
 
 explore: ad_impressions_hour_adapter {
+  persist_with: adwords_etl_datagroup
   extends: [ad_impressions_adapter]
   from: ad_impressions_hour_adapter
   view_name: fact
@@ -240,6 +242,7 @@ view: ad_impressions_campaign_adapter {
 }
 
 explore: ad_impressions_campaign_hour_adapter {
+  persist_with: adwords_etl_datagroup
   extends: [ad_impressions_campaign_adapter]
   from: ad_impressions_campaign_hour_adapter
   view_name: fact
@@ -251,6 +254,7 @@ view: ad_impressions_campaign_hour_adapter {
 }
 
 explore: ad_impressions_ad_group_adapter {
+  persist_with: adwords_etl_datagroup
   extends: [ad_impressions_campaign_adapter]
   from: ad_impressions_ad_group_adapter
   view_name: fact
@@ -287,6 +291,7 @@ view: ad_impressions_ad_group_adapter {
 }
 
 explore: ad_impressions_ad_group_hour_adapter {
+  persist_with: adwords_etl_datagroup
   extends: [ad_impressions_ad_group_adapter]
   from: ad_impressions_ad_group_hour_adapter
   view_name: fact
@@ -298,6 +303,7 @@ view: ad_impressions_ad_group_hour_adapter {
 }
 
 explore: ad_impressions_keyword_adapter {
+  persist_with: adwords_etl_datagroup
   extends: [ad_impressions_ad_group_adapter]
   from: ad_impressions_keyword_adapter
   view_name: fact
@@ -330,6 +336,7 @@ view: ad_impressions_keyword_adapter {
 }
 
 explore: ad_impressions_ad_adapter {
+  persist_with: adwords_etl_datagroup
   extends: [ad_impressions_keyword_adapter]
   from: ad_impressions_ad_adapter
   view_name: fact
@@ -362,6 +369,7 @@ view: ad_impressions_ad_adapter {
 }
 
 explore: ad_impressions_age_range_adapter {
+  persist_with: adwords_etl_datagroup
   extends: [ad_impressions_keyword_adapter]
   from: ad_impressions_age_range_adapter
   view_name: fact
@@ -384,6 +392,7 @@ view: ad_impressions_age_range_adapter {
 }
 
 explore: ad_impressions_audience_adapter {
+  persist_with: adwords_etl_datagroup
   extends: [ad_impressions_keyword_adapter]
   from: ad_impressions_audience_adapter
   view_name: fact
@@ -406,6 +415,7 @@ view: ad_impressions_audience_adapter {
 }
 
 explore: ad_impressions_gender_adapter {
+  persist_with: adwords_etl_datagroup
   extends: [ad_impressions_keyword_adapter]
   from: ad_impressions_gender_adapter
   view_name: fact
@@ -428,6 +438,7 @@ view: ad_impressions_gender_adapter {
 }
 
 explore: ad_impressions_parental_status_adapter {
+  persist_with: adwords_etl_datagroup
   extends: [ad_impressions_keyword_adapter]
   from: ad_impressions_parental_status_adapter
   view_name: fact
@@ -450,6 +461,7 @@ view: ad_impressions_parental_status_adapter {
 }
 
 explore: ad_impressions_video_adapter {
+  persist_with: adwords_etl_datagroup
   extends: [ad_impressions_ad_group_adapter]
   from: ad_impressions_video_adapter
   view_name: fact
@@ -571,6 +583,7 @@ view: ad_impressions_video_adapter {
 }
 
 explore: ad_impressions_geo_adapter {
+  persist_with: adwords_etl_datagroup
   extends: [ad_impressions_ad_group_adapter]
   from: ad_impressions_geo_adapter
   view_name: fact

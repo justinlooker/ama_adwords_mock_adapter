@@ -4,6 +4,7 @@ include: "ad_group.view"
 include: "google_adwords_base.view"
 
 explore: keyword_adapter {
+  persist_with: adwords_etl_datagroup
   from: keyword_adapter
   view_name: keyword
   hidden: yes

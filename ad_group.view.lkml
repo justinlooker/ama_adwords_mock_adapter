@@ -3,6 +3,7 @@ include: "/app_marketing_analytics_config/adwords_config.view"
 include: "campaign.view"
 
 explore: ad_group_adapter {
+  persist_with: adwords_etl_datagroup
   from: ad_group_adapter
   view_name: ad_group
   hidden: yes

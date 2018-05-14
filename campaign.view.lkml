@@ -3,6 +3,7 @@ include: "/app_marketing_analytics_config/adwords_config.view"
 include: "customer.view"
 
 explore: campaign_adapter {
+  persist_with: adwords_etl_datagroup
   from: campaign_adapter
   view_name: campaign
   hidden: yes

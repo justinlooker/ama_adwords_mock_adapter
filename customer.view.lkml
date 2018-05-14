@@ -2,7 +2,8 @@ include: "/app_marketing_analytics_config/adwords_config.view"
 
 include: "google_adwords_base.view"
 
-explore: customer {
+explore: customer_adapter {
+  persist_with: adwords_etl_datagroup
   from: customer_adapter
   view_name: customer
   hidden: yes
