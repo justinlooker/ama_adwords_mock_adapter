@@ -75,7 +75,7 @@ explore: ad_impressions_adapter {
     from: customer_adapter
     view_label: "Customer"
     sql_on: ${fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${fact._date} = ${customer._date} ;;
+      ${customer.latest} ;;
     relationship: many_to_one
   }
 }
@@ -215,7 +215,7 @@ explore: ad_impressions_campaign_adapter {
     view_label: "Campaign"
     sql_on: ${fact.campaign_id} = ${campaign.campaign_id} AND
       ${fact.external_customer_id} = ${campaign.external_customer_id} AND
-      ${fact._date} = ${campaign._date};;
+      ${campaign.latest};;
     relationship: many_to_one
   }
 }
@@ -265,7 +265,7 @@ explore: ad_impressions_ad_group_adapter {
     sql_on: ${fact.ad_group_id} = ${ad_group.ad_group_id} AND
       ${fact.campaign_id} = ${ad_group.campaign_id} AND
       ${fact.external_customer_id} = ${ad_group.external_customer_id} AND
-      ${fact._date} = ${ad_group._date} ;;
+      ${ad_group.latest} ;;
     relationship: many_to_one
   }
 }
@@ -315,7 +315,7 @@ explore: ad_impressions_keyword_adapter {
       ${fact.ad_group_id} = ${keyword.ad_group_id} AND
       ${fact.campaign_id} = ${keyword.campaign_id} AND
       ${fact.external_customer_id} = ${keyword.external_customer_id} AND
-      ${fact._date} = ${keyword._date} ;;
+      ${keyword.latest} ;;
     relationship: many_to_one
   }
 }
@@ -348,7 +348,7 @@ explore: ad_impressions_ad_adapter {
       ${fact.ad_group_id} = ${ad.ad_group_id} AND
       ${fact.campaign_id} = ${ad.campaign_id} AND
       ${fact.external_customer_id} = ${ad.external_customer_id} AND
-      ${fact._date} = ${ad._date} ;;
+      ${ad.latest} ;;
     relationship:  many_to_one
   }
 }
@@ -381,7 +381,7 @@ explore: ad_impressions_age_range_adapter {
       ${fact.ad_group_id} = ${criteria.ad_group_id} AND
       ${fact.campaign_id} = ${criteria.campaign_id} AND
       ${fact.external_customer_id} = ${criteria.external_customer_id} AND
-      ${fact._date} = ${criteria._date} ;;
+      ${criteria.latest} ;;
     relationship: many_to_one
   }
 }
@@ -404,7 +404,7 @@ explore: ad_impressions_audience_adapter {
       ${fact.ad_group_id} = ${criteria.ad_group_id} AND
       ${fact.campaign_id} = ${criteria.campaign_id} AND
       ${fact.external_customer_id} = ${criteria.external_customer_id} AND
-      ${fact._date} = ${criteria._date} ;;
+      ${criteria.latest} ;;
     relationship: many_to_one
   }
 }
@@ -427,7 +427,7 @@ explore: ad_impressions_gender_adapter {
       ${fact.ad_group_id} = ${criteria.ad_group_id} AND
       ${fact.campaign_id} = ${criteria.campaign_id} AND
       ${fact.external_customer_id} = ${criteria.external_customer_id} AND
-      ${fact._date} = ${criteria._date} ;;
+      ${criteria.latest} ;;
     relationship: many_to_one
   }
 }
@@ -450,7 +450,7 @@ explore: ad_impressions_parental_status_adapter {
       ${fact.ad_group_id} = ${criteria.ad_group_id} AND
       ${fact.campaign_id} = ${criteria.campaign_id} AND
       ${fact.external_customer_id} = ${criteria.external_customer_id} AND
-      ${fact._date} = ${criteria._date} ;;
+      ${criteria.latest} ;;
     relationship: many_to_one
   }
 }
@@ -473,7 +473,7 @@ explore: ad_impressions_video_adapter {
       ${fact.ad_group_id} = ${video.ad_group_id} AND
       ${fact.campaign_id} = ${video.campaign_id} AND
       ${fact.external_customer_id} = ${video.external_customer_id} AND
-      ${fact._date} = ${video._date} ;;
+      ${video.latest} ;;
     relationship: many_to_one
   }
 }
