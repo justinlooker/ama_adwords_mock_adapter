@@ -138,7 +138,7 @@ view: keyword_adapter {
 
   dimension: campaign_ad_group_keyword_combination {
     type: string
-    sql: CONCAT(${campaign.campaign_name}, "_", ${ad_group.ad_group_name}, "_", ${keyword.criteria}) ;;
+    sql: CONCAT(${campaign.name}, "_", ${ad_group.ad_group_name}, "_", ${keyword.criteria}) ;;
   }
 
   dimension: criteria_destination_url {

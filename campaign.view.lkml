@@ -83,7 +83,7 @@ view: campaign_adapter {
     sql: ${TABLE}.CampaignMobileBidModifier ;;
   }
 
-  dimension: campaign_name {
+  dimension: name {
     type: string
     sql: ${TABLE}.CampaignName ;;
     link: {
