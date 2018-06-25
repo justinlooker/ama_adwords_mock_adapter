@@ -63,13 +63,8 @@ view: transformations_base {
   }
 }
 
-explore: ad_impressions_adapter {
-  persist_with: adwords_etl_datagroup
-  label: "Ad Impressions"
-  view_label: "Ad Impressions"
-  from: ad_impressions_adapter
-  view_name: fact
-  hidden: yes
+explore: customer_join {
+  extension: required
 
   join: customer {
     from: customer_adapter
@@ -78,6 +73,16 @@ explore: ad_impressions_adapter {
       ${customer.latest} ;;
     relationship: many_to_one
   }
+}
+
+explore: ad_impressions_adapter {
+  extends: [customer_join]
+  persist_with: adwords_etl_datagroup
+  label: "Ad Impressions"
+  view_label: "Ad Impressions"
+  from: ad_impressions_adapter
+  view_name: fact
+  hidden: yes
 }
 
 view: ad_impressions_adapter {
@@ -205,10 +210,8 @@ view: ad_impressions_hour_adapter {
   sql_table_name: {{ fact.adwords_schema._sql }}.HourlyAccountStats_{{ fact.adwords_customer_id._sql }} ;;
 }
 
-explore: ad_impressions_campaign_adapter {
-  extends: [ad_impressions_adapter]
-  from: ad_impressions_campaign_adapter
-  view_name: fact
+explore: campaign_join {
+  extension: required
 
   join: campaign {
     from: campaign_adapter
@@ -218,6 +221,12 @@ explore: ad_impressions_campaign_adapter {
       ${campaign.latest};;
     relationship: many_to_one
   }
+}
+
+explore: ad_impressions_campaign_adapter {
+  extends: [ad_impressions_adapter, campaign_join]
+  from: ad_impressions_campaign_adapter
+  view_name: fact
 }
 
 view: ad_impressions_campaign_adapter {
@@ -253,11 +262,8 @@ view: ad_impressions_campaign_hour_adapter {
   sql_table_name: {{ fact.adwords_schema._sql }}.HourlyCampaignStats_{{ fact.adwords_customer_id._sql }} ;;
 }
 
-explore: ad_impressions_ad_group_adapter {
-  persist_with: adwords_etl_datagroup
-  extends: [ad_impressions_campaign_adapter]
-  from: ad_impressions_ad_group_adapter
-  view_name: fact
+explore: ad_group_join {
+  extension: required
 
   join: ad_group {
     from: ad_group_adapter
@@ -268,6 +274,13 @@ explore: ad_impressions_ad_group_adapter {
       ${ad_group.latest} ;;
     relationship: many_to_one
   }
+}
+
+explore: ad_impressions_ad_group_adapter {
+  persist_with: adwords_etl_datagroup
+  extends: [ad_impressions_campaign_adapter, ad_group_join]
+  from: ad_impressions_ad_group_adapter
+  view_name: fact
 }
 
 view: ad_impressions_ad_group_adapter {
@@ -302,11 +315,8 @@ view: ad_impressions_ad_group_hour_adapter {
   sql_table_name: {{ fact.adwords_schema._sql }}.HourlyAdGroupStats_{{ fact.adwords_customer_id._sql }} ;;
 }
 
-explore: ad_impressions_keyword_adapter {
-  persist_with: adwords_etl_datagroup
-  extends: [ad_impressions_ad_group_adapter]
-  from: ad_impressions_keyword_adapter
-  view_name: fact
+explore: keyword_join {
+  extension: required
 
   join: keyword {
     from: keyword_adapter
@@ -318,6 +328,13 @@ explore: ad_impressions_keyword_adapter {
       ${keyword.latest} ;;
     relationship: many_to_one
   }
+}
+
+explore: ad_impressions_keyword_adapter {
+  persist_with: adwords_etl_datagroup
+  extends: [ad_impressions_ad_group_adapter, keyword_join]
+  from: ad_impressions_keyword_adapter
+  view_name: fact
 }
 
 view: ad_impressions_keyword_adapter {
@@ -335,11 +352,8 @@ view: ad_impressions_keyword_adapter {
   }
 }
 
-explore: ad_impressions_ad_adapter {
-  persist_with: adwords_etl_datagroup
-  extends: [ad_impressions_keyword_adapter]
-  from: ad_impressions_ad_adapter
-  view_name: fact
+explore: ad_join {
+  extension: required
 
   join: ad {
     from: ad_adapter
@@ -351,6 +365,13 @@ explore: ad_impressions_ad_adapter {
       ${ad.latest} ;;
     relationship:  many_to_one
   }
+}
+
+explore: ad_impressions_ad_adapter {
+  persist_with: adwords_etl_datagroup
+  extends: [ad_impressions_keyword_adapter, ad_join]
+  from: ad_impressions_ad_adapter
+  view_name: fact
 }
 
 view: ad_impressions_ad_adapter {
