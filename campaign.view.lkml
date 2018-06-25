@@ -2,6 +2,19 @@ include: "/app_marketing_analytics_config/adwords_config.view"
 
 include: "customer.view"
 
+explore: campaign_join {
+  extension: required
+
+  join: campaign {
+    from: campaign_adapter
+    view_label: "Campaign"
+    sql_on: ${fact.campaign_id} = ${campaign.campaign_id} AND
+      ${fact.external_customer_id} = ${campaign.external_customer_id} AND
+      ${campaign.latest};;
+    relationship: many_to_one
+  }
+}
+
 explore: campaign_adapter {
   persist_with: adwords_etl_datagroup
   from: campaign_adapter

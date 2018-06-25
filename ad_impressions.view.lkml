@@ -63,18 +63,6 @@ view: transformations_base {
   }
 }
 
-explore: customer_join {
-  extension: required
-
-  join: customer {
-    from: customer_adapter
-    view_label: "Customer"
-    sql_on: ${fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${customer.latest} ;;
-    relationship: many_to_one
-  }
-}
-
 explore: ad_impressions_adapter {
   extends: [customer_join]
   persist_with: adwords_etl_datagroup
@@ -210,19 +198,6 @@ view: ad_impressions_hour_adapter {
   sql_table_name: {{ fact.adwords_schema._sql }}.HourlyAccountStats_{{ fact.adwords_customer_id._sql }} ;;
 }
 
-explore: campaign_join {
-  extension: required
-
-  join: campaign {
-    from: campaign_adapter
-    view_label: "Campaign"
-    sql_on: ${fact.campaign_id} = ${campaign.campaign_id} AND
-      ${fact.external_customer_id} = ${campaign.external_customer_id} AND
-      ${campaign.latest};;
-    relationship: many_to_one
-  }
-}
-
 explore: ad_impressions_campaign_adapter {
   extends: [ad_impressions_adapter, campaign_join]
   from: ad_impressions_campaign_adapter
@@ -260,20 +235,6 @@ explore: ad_impressions_campaign_hour_adapter {
 view: ad_impressions_campaign_hour_adapter {
   extends: [ad_impressions_campaign_adapter, hour_base]
   sql_table_name: {{ fact.adwords_schema._sql }}.HourlyCampaignStats_{{ fact.adwords_customer_id._sql }} ;;
-}
-
-explore: ad_group_join {
-  extension: required
-
-  join: ad_group {
-    from: ad_group_adapter
-    view_label: "Ad Groups"
-    sql_on: ${fact.ad_group_id} = ${ad_group.ad_group_id} AND
-      ${fact.campaign_id} = ${ad_group.campaign_id} AND
-      ${fact.external_customer_id} = ${ad_group.external_customer_id} AND
-      ${ad_group.latest} ;;
-    relationship: many_to_one
-  }
 }
 
 explore: ad_impressions_ad_group_adapter {
@@ -315,21 +276,6 @@ view: ad_impressions_ad_group_hour_adapter {
   sql_table_name: {{ fact.adwords_schema._sql }}.HourlyAdGroupStats_{{ fact.adwords_customer_id._sql }} ;;
 }
 
-explore: keyword_join {
-  extension: required
-
-  join: keyword {
-    from: keyword_adapter
-    view_label: "Keyword"
-    sql_on: ${fact.criterion_id} = ${keyword.criterion_id} AND
-      ${fact.ad_group_id} = ${keyword.ad_group_id} AND
-      ${fact.campaign_id} = ${keyword.campaign_id} AND
-      ${fact.external_customer_id} = ${keyword.external_customer_id} AND
-      ${keyword.latest} ;;
-    relationship: many_to_one
-  }
-}
-
 explore: ad_impressions_keyword_adapter {
   persist_with: adwords_etl_datagroup
   extends: [ad_impressions_ad_group_adapter, keyword_join]
@@ -349,21 +295,6 @@ view: ad_impressions_keyword_adapter {
   dimension: criterion_id_string {
     hidden: yes
     sql: CAST(${criterion_id} as STRING) ;;
-  }
-}
-
-explore: ad_join {
-  extension: required
-
-  join: ad {
-    from: ad_adapter
-    view_label: "Ads"
-    sql_on: ${fact.creative_id} = ${ad.creative_id} AND
-      ${fact.ad_group_id} = ${ad.ad_group_id} AND
-      ${fact.campaign_id} = ${ad.campaign_id} AND
-      ${fact.external_customer_id} = ${ad.external_customer_id} AND
-      ${ad.latest} ;;
-    relationship:  many_to_one
   }
 }
 
