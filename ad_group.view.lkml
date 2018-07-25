@@ -41,7 +41,36 @@ explore: ad_group_adapter {
 
 view: ad_group_adapter {
   extends: [adwords_config, google_adwords_base]
-  sql_table_name: {{ ad_group.adwords_schema._sql }}.AdGroup_{{ ad_group.adwords_customer_id._sql }} ;;
+
+  derived_table: {
+    sql:
+        SELECT
+          0 as AdGroupDesktopBidModifier,
+          'NA' as AdGroupId,
+          0 as AdGroupMobileBidModifier,
+          'NA' as AdGroupName,
+          'NA' as AdGroupStatus,
+          0 as AdGroupTabletBidModifier,
+          'NA' as BidType,
+          'NA' as BiddingStrategyId,
+          'NA' as BiddingStrategyName,
+          'NA' as BiddingStrategySource,
+          'NA' as BiddingStrategyType,
+          'NA' as CampaignId,
+          'NA' as ContentBidCriterionTypeGroup,
+          0 as CpcBid,
+          0 as CpmBid,
+          0 as CpvBid,
+          0 as EnhancedCpcEnabled,
+          0 asEnhancedCpvEnabled,
+          'NA' as LabelIds,
+          'NA' as Labels,
+          0 as TargetCpa,
+          'NA' as TargetCpaBidSource,
+          'NA' as TrackingUrlTemplate,
+          'NA' as UrlCustomParameters
+        ;;
+  }
 
   dimension: ad_group_desktop_bid_modifier {
     hidden: yes
