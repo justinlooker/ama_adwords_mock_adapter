@@ -1,5 +1,3 @@
-include: "/app_marketing_analytics_config/adwords_config.view"
-
 include: "google_adwords_base.view"
 
 explore: customer_join {
@@ -22,8 +20,24 @@ explore: customer_adapter {
 }
 
 view: customer_adapter {
-  extends: [adwords_config, google_adwords_base]
-  sql_table_name: {{ customer.adwords_schema._sql }}.Customer_{{ customer.adwords_customer_id._sql }} ;;
+  extends: [google_adwords_base]
+
+  derived_table: {
+    sql:
+        SELECT
+          CURRENT_DATE() as _DATA_DATE,
+          CURRENT_DATE() as _LATEST_DATE,
+          'NA' as ExternalCustomerId,
+        'NA' as AccountCurrencyCode,
+        'NA' as AccountDescriptiveName,
+        'NA' as AccountTimeZoneId,
+        false as CanManageClients,
+        'NA' as CustomerDescriptiveName,
+        false as IsAutoTaggingEnabled,
+        false as IsTestAccount,
+        'NA' as PrimaryCompanyName
+      ;;
+  }
 
   dimension: account_currency_code {
     hidden: yes

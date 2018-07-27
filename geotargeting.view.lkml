@@ -1,5 +1,16 @@
 view: geotargeting {
-  sql_table_name: `bigquery-connectors.geotargeting.20180321` ;;
+  derived_table: {
+    sql:
+        SELECT
+          'NA' as Canonical_Name,
+          'NA' as Country_Code,
+          'NA' as Criteria_ID,
+          'NA' as Name,
+          'NA' as Parent_ID,
+          'NA' as Status,
+          'NA' as Target_Type
+      ;;
+  }
 
   dimension: canonical_name {
     type: string

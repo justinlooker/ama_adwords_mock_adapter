@@ -1,5 +1,3 @@
-include: "/app_marketing_analytics_config/adwords_config.view"
-
 include: "ad_group.view"
 include: "google_adwords_base.view"
 
@@ -51,8 +49,52 @@ explore: keyword_adapter {
 }
 
 view: keyword_adapter {
-  extends: [adwords_config, google_adwords_base]
-  sql_table_name: {{ keyword.adwords_schema._sql }}.Keyword_{{ keyword.adwords_customer_id._sql }} ;;
+  extends: [google_adwords_base]
+
+  derived_table: {
+    sql:
+        SELECT
+          CURRENT_DATE() as _DATA_DATE,
+          CURRENT_DATE() as _LATEST_DATE,
+          'NA' as ExternalCustomerId,
+          'NA' as AdGroupId,
+          'NA' as ApprovalStatus,
+          'NA' as BidType,
+          'NA' as BiddingStrategyId,
+          'NA' as BiddingStrategyName,
+          'NA' as BiddingStrategySource,
+          'NA' as BiddingStrategyType,
+          'NA' as CampaignId,
+          0 as CpcBid,
+          'NA' as CpcBidSource,
+          0 as CpmBid,
+          'NA' as CreativeQualityScore,
+          'NA' as Criteria,
+          'NA' as CriteriaDestinationUrl,
+          'NA' as CriterionId,
+          false as EnhancedCpcEnabled,
+          0 as EstimatedAddClicksAtFirstPositionCpc,
+          0 as EstimatedAddCostAtFirstPositionCpc,
+          'NA' as FinalAppUrls,
+          'NA' as FinalMobileUrls,
+          'NA' as FinalUrls,
+          'NA' as FirstPageCpc,
+          'NA' as FirstPositionCpc,
+          false as HasQualityScore,
+          false as IsNegative,
+          'NA' as KeywordMatchType,
+          'NA' as LabelIds,
+          'NA' as Labels,
+          'NA' as PostClickQualityScore,
+          0 as QualityScore,
+          'NA' as SearchPredictedCtr,
+          'NA' as Status,
+          'NA' as SystemServingStatus,
+          'NA' as TopOfPageCpc,
+          'NA' as TrackingUrlTemplate,
+          'NA' as UrlCustomParameters
+      ;;
+  }
 
   dimension: ad_group_id {
     sql: ${TABLE}.AdGroupId ;;

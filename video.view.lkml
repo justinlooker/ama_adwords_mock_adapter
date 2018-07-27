@@ -1,10 +1,26 @@
-include: "/app_marketing_analytics_config/adwords_config.view"
-
 include: "google_adwords_base.view"
 
 view: video_adapter {
-  extends: [adwords_config, google_adwords_base]
-  sql_table_name: {{ video.adwords_schema._sql }}.Video_{{ video.adwords_customer_id._sql }} ;;
+  extends: [google_adwords_base]
+
+  derived_table: {
+    sql:
+        SELECT
+          CURRENT_DATE() as _DATA_DATE,
+          CURRENT_DATE() as _LATEST_DATE,
+          'NA' as ExternalCustomerId,
+          0 as AdGroupId,
+          0 as CampaignId,
+          0 as VideoDuration,
+          'NA' as VideoId,
+          'NA' as VideoTitle,
+          0 as AdGroupId,
+          0 as CampaignId,
+          0 as VideoDuration,
+          'NA' as VideoId,
+          'NA' as VideoTitle
+      ;;
+  }
 
   dimension: ad_group_id {
     hidden: yes

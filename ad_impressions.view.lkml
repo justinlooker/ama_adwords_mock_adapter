@@ -1,5 +1,3 @@
-include: "/app_marketing_analytics_config/adwords_config.view"
-
 include: "ad.view"
 include: "age_range.view"
 include: "audience.view"
@@ -74,8 +72,37 @@ explore: ad_impressions_adapter {
 }
 
 view: ad_impressions_adapter {
-  extends: [adwords_config, google_adwords_base, transformations_base]
-  sql_table_name: {{ fact.adwords_schema._sql }}.AccountBasicStats_{{ fact.adwords_customer_id._sql }} ;;
+  extends: [google_adwords_base, transformations_base]
+
+  derived_table: {
+    sql:
+        SELECT
+          CURRENT_DATE() as _DATA_DATE,
+          CURRENT_DATE() as _LATEST_DATE,
+          'NA' as ExternalCustomerId,
+          0 as AveragePosition,
+          0 as ActiveViewImpressions,
+          0 as ActiveViewMeasurability,
+          0 as ActiveViewMeasurableCost,
+          0 as ActiveViewMeasurableImpressions,
+          0 as ActiveViewViewability,
+          'NA' as AdNetworkType1,
+          'NA' as AdNetworkType2,
+          0 as clicks,
+          0 as conversions,
+          0 as conversionvalue,
+          0 as cost,
+          'NA' as Device,
+          0 as impressions,
+          0 as Interactions,
+          'NA' as InteractionTypes,
+          'NA' as Slot,
+          0 as ViewThroughConversions,
+          'NA' as CampaignId,
+          'NA' as AdGroupId,
+          'NA' as CriterionId
+        ;;
+  }
 
   dimension: average_position {
     hidden: yes
@@ -195,7 +222,37 @@ explore: ad_impressions_hour_adapter {
 
 view: ad_impressions_hour_adapter {
   extends: [ad_impressions_adapter, hour_base]
-  sql_table_name: {{ fact.adwords_schema._sql }}.HourlyAccountStats_{{ fact.adwords_customer_id._sql }} ;;
+
+  derived_table: {
+    sql:
+        SELECT
+          CURRENT_DATE() as _DATA_DATE,
+          CURRENT_DATE() as _LATEST_DATE,
+          'NA' as ExternalCustomerId,
+          0 as AveragePosition,
+          0 as ActiveViewImpressions,
+          0 as ActiveViewMeasurability,
+          0 as ActiveViewMeasurableCost,
+          0 as ActiveViewMeasurableImpressions,
+          0 as ActiveViewViewability,
+          'NA' as AdNetworkType1,
+          'NA' as AdNetworkType2,
+          0 as clicks,
+          0 as conversions,
+          0 as conversionvalue,
+          0 as cost,
+          'NA' as Device,
+          0 as impressions,
+          0 as Interactions,
+          'NA' as InteractionTypes,
+          'NA' as Slot,
+          0 as ViewThroughConversions,
+          0 as HourOfDay,
+          'NA' as CampaignId,
+          'NA' as AdGroupId,
+          'NA' as CriterionId
+        ;;
+  }
 }
 
 explore: ad_impressions_campaign_adapter {
@@ -206,8 +263,37 @@ explore: ad_impressions_campaign_adapter {
 
 view: ad_impressions_campaign_adapter {
   extends: [ad_impressions_adapter]
-  sql_table_name: {{ fact.adwords_schema._sql }}.CampaignBasicStats_{{ fact.adwords_customer_id._sql }} ;;
 
+  derived_table: {
+    sql:
+      SELECT
+        CURRENT_DATE() as _DATA_DATE,
+        CURRENT_DATE() as _LATEST_DATE,
+        'NA' as ExternalCustomerId,
+        0 as AveragePosition,
+        0 as ActiveViewImpressions,
+        0 as ActiveViewMeasurability,
+        0 as ActiveViewMeasurableCost,
+        0 as ActiveViewMeasurableImpressions,
+        0 as ActiveViewViewability,
+        'NA' as AdNetworkType1,
+        'NA' as AdNetworkType2,
+        0 as clicks,
+        0 as conversions,
+        0 as conversionvalue,
+        0 as cost,
+        'NA' as Device,
+        0 as impressions,
+        0 as Interactions,
+        'NA' as InteractionTypes,
+        'NA' as Slot,
+        0 as ViewThroughConversions,
+        'NA' as BaseCampaignId,
+        'NA' as CampaignId,
+        'NA' as AdGroupId,
+        'NA' as CriterionId
+      ;;
+  }
 
   dimension: base_campaign_id {
     hidden: yes
@@ -234,7 +320,38 @@ explore: ad_impressions_campaign_hour_adapter {
 
 view: ad_impressions_campaign_hour_adapter {
   extends: [ad_impressions_campaign_adapter, hour_base]
-  sql_table_name: {{ fact.adwords_schema._sql }}.HourlyCampaignStats_{{ fact.adwords_customer_id._sql }} ;;
+
+  derived_table: {
+    sql:
+      SELECT
+        CURRENT_DATE() as _DATA_DATE,
+        CURRENT_DATE() as _LATEST_DATE,
+        'NA' as ExternalCustomerId,
+        0 as AveragePosition,
+        0 as ActiveViewImpressions,
+        0 as ActiveViewMeasurability,
+        0 as ActiveViewMeasurableCost,
+        0 as ActiveViewMeasurableImpressions,
+        0 as ActiveViewViewability,
+        'NA' as AdNetworkType1,
+        'NA' as AdNetworkType2,
+        0 as clicks,
+        0 as conversions,
+        0 as conversionvalue,
+        0 as cost,
+        'NA' as Device,
+        0 as impressions,
+        0 as Interactions,
+        'NA' as InteractionTypes,
+        'NA' as Slot,
+        0 as ViewThroughConversions,
+        'NA' as BaseCampaignId,
+        'NA' as CampaignId,
+        0 as HourOfDay,
+        'NA' as AdGroupId,
+        'NA' as CriterionId
+      ;;
+  }
 }
 
 explore: ad_impressions_ad_group_adapter {
@@ -246,7 +363,37 @@ explore: ad_impressions_ad_group_adapter {
 
 view: ad_impressions_ad_group_adapter {
   extends: [ad_impressions_campaign_adapter]
-  sql_table_name: {{ fact.adwords_schema._sql }}.AdGroupBasicStats_{{ fact.adwords_customer_id._sql }} ;;
+
+  derived_table: {
+    sql:
+      SELECT
+        CURRENT_DATE() as _DATA_DATE,
+        CURRENT_DATE() as _LATEST_DATE,
+        'NA' as ExternalCustomerId,
+        0 as AveragePosition,
+        0 as ActiveViewImpressions,
+        0 as ActiveViewMeasurability,
+        0 as ActiveViewMeasurableCost,
+        0 as ActiveViewMeasurableImpressions,
+        0 as ActiveViewViewability,
+        'NA' as AdNetworkType1,
+        'NA' as AdNetworkType2,
+        0 as clicks,
+        0 as conversions,
+        0 as conversionvalue,
+        0 as cost,
+        'NA' as Device,
+        0 as impressions,
+        0 as Interactions,
+        'NA' as InteractionTypes,
+        'NA' as Slot,
+        0 as ViewThroughConversions,
+        'NA' as AdGroupId,
+        'NA' as BaseAdGroupId,
+        'NA' as CampaignId,
+        'NA' as CriterionId
+      ;;
+  }
 
   dimension: ad_group_id {
     hidden: yes
@@ -273,7 +420,38 @@ explore: ad_impressions_ad_group_hour_adapter {
 
 view: ad_impressions_ad_group_hour_adapter {
   extends: [ad_impressions_ad_group_adapter, hour_base]
-  sql_table_name: {{ fact.adwords_schema._sql }}.HourlyAdGroupStats_{{ fact.adwords_customer_id._sql }} ;;
+
+  derived_table: {
+    sql:
+      SELECT
+        CURRENT_DATE() as _DATA_DATE,
+        CURRENT_DATE() as _LATEST_DATE,
+        'NA' as ExternalCustomerId,
+        0 as AveragePosition,
+        0 as ActiveViewImpressions,
+        0 as ActiveViewMeasurability,
+        0 as ActiveViewMeasurableCost,
+        0 as ActiveViewMeasurableImpressions,
+        0 as ActiveViewViewability,
+        'NA' as AdNetworkType1,
+        'NA' as AdNetworkType2,
+        0 as clicks,
+        0 as conversions,
+        0 as conversionvalue,
+        0 as cost,
+        'NA' as Device,
+        0 as impressions,
+        0 as Interactions,
+        'NA' as InteractionTypes,
+        'NA' as Slot,
+        0 as ViewThroughConversions,
+        'NA' as AdGroupId,
+        'NA' as BaseAdGroupId,
+        0 as HourOfDay,
+        'NA' as CampaignId,
+        'NA' as CriterionId
+      ;;
+  }
 }
 
 explore: ad_impressions_keyword_adapter {
@@ -285,7 +463,36 @@ explore: ad_impressions_keyword_adapter {
 
 view: ad_impressions_keyword_adapter {
   extends: [ad_impressions_ad_group_adapter]
-  sql_table_name: {{ fact.adwords_schema._sql }}.KeywordBasicStats_{{ fact.adwords_customer_id._sql }} ;;
+
+  derived_table: {
+    sql:
+      SELECT
+        CURRENT_DATE() as _DATA_DATE,
+        CURRENT_DATE() as _LATEST_DATE,
+        'NA' as ExternalCustomerId,
+        0 as AveragePosition,
+        0 as ActiveViewImpressions,
+        0 as ActiveViewMeasurability,
+        0 as ActiveViewMeasurableCost,
+        0 as ActiveViewMeasurableImpressions,
+        0 as ActiveViewViewability,
+        'NA' as AdNetworkType1,
+        'NA' as AdNetworkType2,
+        0 as clicks,
+        0 as conversions,
+        0 as conversionvalue,
+        0 as cost,
+        'NA' as Device,
+        0 as impressions,
+        0 as Interactions,
+        'NA' as InteractionTypes,
+        'NA' as Slot,
+        0 as ViewThroughConversions,,
+        'NA' as AdGroupId,
+        'NA' as BaseAdGroupId,
+        'NA' as CriterionId
+      ;;
+  }
 
   dimension: criterion_id {
     hidden: yes
@@ -307,7 +514,37 @@ explore: ad_impressions_ad_adapter {
 
 view: ad_impressions_ad_adapter {
   extends: [ad_impressions_keyword_adapter]
-  sql_table_name: {{ fact.adwords_schema._sql }}.AdBasicStats_{{ fact.adwords_customer_id._sql }} ;;
+
+  derived_table: {
+    sql:
+      SELECT
+        CURRENT_DATE() as _DATA_DATE,
+        CURRENT_DATE() as _LATEST_DATE,
+        'NA' as ExternalCustomerId,
+        0 as AveragePosition,
+        0 as ActiveViewImpressions,
+        0 as ActiveViewMeasurability,
+        0 as ActiveViewMeasurableCost,
+        0 as ActiveViewMeasurableImpressions,
+        0 as ActiveViewViewability,
+        'NA' as AdNetworkType1,
+        'NA' as AdNetworkType2,
+        0 as clicks,
+        0 as conversions,
+        0 as conversionvalue,
+        0 as cost,
+        'NA' as Device,
+        0 as impressions,
+        0 as Interactions,
+        'NA' as InteractionTypes,
+        'NA' as Slot,
+        0 as ViewThroughConversions,
+        'NA' as CreativeId,
+        'NA' as CampaignId,
+        'NA' as AdGroupId,
+        'NA' as CriterionId
+      ;;
+  }
 
   dimension: creative_id {
     hidden: yes
@@ -340,7 +577,6 @@ explore: ad_impressions_age_range_adapter {
 
 view: ad_impressions_age_range_adapter {
   extends: [ad_impressions_keyword_adapter]
-  sql_table_name: {{ fact.adwords_schema._sql }}.AgeRangeBasicStats_{{ fact.adwords_customer_id._sql }} ;;
 }
 
 explore: ad_impressions_audience_adapter {
@@ -363,7 +599,6 @@ explore: ad_impressions_audience_adapter {
 
 view: ad_impressions_audience_adapter {
   extends: [ad_impressions_keyword_adapter]
-  sql_table_name: {{ fact.adwords_schema._sql }}.AudienceBasicStats_{{ fact.adwords_customer_id._sql }} ;;
 }
 
 explore: ad_impressions_gender_adapter {
@@ -386,7 +621,6 @@ explore: ad_impressions_gender_adapter {
 
 view: ad_impressions_gender_adapter {
   extends: [ad_impressions_keyword_adapter]
-  sql_table_name: {{ fact.adwords_schema._sql }}.GenderBasicStats_{{ fact.adwords_customer_id._sql }} ;;
 }
 
 explore: ad_impressions_parental_status_adapter {
@@ -409,7 +643,6 @@ explore: ad_impressions_parental_status_adapter {
 
 view: ad_impressions_parental_status_adapter {
   extends: [ad_impressions_keyword_adapter]
-  sql_table_name: {{ fact.adwords_schema._sql }}.ParentalStatusBasicStats_{{ fact.adwords_customer_id._sql }} ;;
 }
 
 explore: ad_impressions_video_adapter {
@@ -431,8 +664,41 @@ explore: ad_impressions_video_adapter {
 }
 
 view: ad_impressions_video_adapter {
-  extends: [adwords_config, google_adwords_base, transformations_base]
-  sql_table_name: {{ fact.adwords_schema._sql }}.VideoBasicStats_{{ fact.adwords_customer_id._sql }} ;;
+  extends: [google_adwords_base, transformations_base]
+
+  derived_table: {
+    sql:
+      SELECT
+        CURRENT_DATE() as _DATA_DATE,
+        CURRENT_DATE() as _LATEST_DATE,
+        'NA' as ExternalCustomerId,
+        0 as AveragePosition,
+        0 as ActiveViewImpressions,
+        0 as ActiveViewMeasurability,
+        0 as ActiveViewMeasurableCost,
+        0 as ActiveViewMeasurableImpressions,
+        0 as ActiveViewViewability,
+        'NA' as AdNetworkType1,
+        'NA' as AdNetworkType2,
+        0 as clicks,
+        0 as conversions,
+        0 as conversionvalue,
+        0 as cost,
+        'NA' as Device,
+        0 as impressions,
+        0 as Interactions,
+        'NA' as InteractionTypes,
+        'NA' as Slot,
+        0 as ViewThroughConversions,
+        'NA' as AdGroupId,
+        'NA' as CampaignId,
+        'NA' as CreativeId,
+        'NA' as CreativeStatus,
+        'NA' as Device,
+        'NA' as VideoId,
+        'NA' as VideoChannelId
+      ;;
+  }
 
   dimension: ad_group_id {
     hidden: yes
@@ -606,7 +872,41 @@ explore: ad_impressions_geo_adapter {
 
 view: ad_impressions_geo_adapter {
   extends: [ad_impressions_ad_group_adapter]
-  sql_table_name: {{ fact.adwords_schema._sql }}.GeoStats_{{ fact.adwords_customer_id._sql }} ;;
+
+  derived_table: {
+    sql:
+      SELECT
+        CURRENT_DATE() as _DATA_DATE,
+        CURRENT_DATE() as _LATEST_DATE,
+        'NA' as ExternalCustomerId,
+        0 as AveragePosition,
+        0 as ActiveViewImpressions,
+        0 as ActiveViewMeasurability,
+        0 as ActiveViewMeasurableCost,
+        0 as ActiveViewMeasurableImpressions,
+        0 as ActiveViewViewability,
+        'NA' as AdNetworkType1,
+        'NA' as AdNetworkType2,
+        0 as clicks,
+        0 as conversions,
+        0 as conversionvalue,
+        0 as cost,
+        'NA' as Device,
+        0 as impressions,
+        0 as Interactions,
+        'NA' as InteractionTypes,
+        'NA' as Slot,
+        0 as ViewThroughConversions,
+        'NA' as CityCriteriaId,
+        'NA' as CountryCriteriaId,
+        'NA' as MetroCriteriaId,
+        'NA' as MostSpecificCriteriaId,
+        'NA' as RegionCriteriaId,
+        'NA' as CampaignId,
+        'NA' as AdGroupId,
+        'NA' as CriterionId
+      ;;
+  }
 
   dimension: city_criteria_id {
     hidden: yes

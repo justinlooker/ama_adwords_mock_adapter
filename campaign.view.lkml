@@ -1,5 +1,3 @@
-include: "/app_marketing_analytics_config/adwords_config.view"
-
 include: "customer.view"
 
 explore: campaign_join {
@@ -32,8 +30,42 @@ explore: campaign_adapter {
 
 
 view: campaign_adapter {
-  extends: [adwords_config, google_adwords_base]
-  sql_table_name: {{ campaign.adwords_schema._sql }}.Campaign_{{ campaign.adwords_customer_id._sql }} ;;
+  extends: [google_adwords_base]
+
+  derived_table: {
+    sql:
+        SELECT
+          CURRENT_DATE() as _DATA_DATE,
+          CURRENT_DATE() as _LATEST_DATE,
+          'NA' as ExternalCustomerId,
+          'NA' as AdvertisingChannelSubType,
+          'NA' as AdvertisingChannelType,
+          0 as Amount,
+          'NA' as BidType,
+          'NA' as BiddingStrategyId,
+          'NA' as BiddingStrategyName,
+          'NA' as BiddingStrategyType,
+          'NA' as BudgetId,
+          0 as CampaignDesktopBidModifier,
+          'NA' as CampaignId,
+          0 as CampaignMobileBidModifier,
+          'NA' as CampaignName,
+          'NA' as CampaignStatus,
+          0 as CampaignTabletBidModifier,
+          'NA' as CampaignTrialType,
+          CURRENT_DATE() as EndDate,
+          false as EnhancedCpcEnabled,
+          false as EnhancedCpvEnabled,
+          false as IsBudgetExplicitlyShared,
+          'NA' as LabelIds,
+          'NA' as Labels,
+          'NA' as Period,
+          'NA' as ServingStatus,
+          CURRENT_DATE() as StartDate,
+          'NA' as TrackingUrlTemplate,
+          'NA' as UrlCustomParameters
+        ;;
+  }
 
   dimension: advertising_channel_sub_type {
     hidden: yes

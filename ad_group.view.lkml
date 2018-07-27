@@ -1,5 +1,3 @@
-include: "/app_marketing_analytics_config/adwords_config.view"
-
 include: "campaign.view"
 
 explore: ad_group_join {
@@ -40,36 +38,39 @@ explore: ad_group_adapter {
 }
 
 view: ad_group_adapter {
-  extends: [adwords_config, google_adwords_base]
+  extends: [google_adwords_base]
 
   derived_table: {
     sql:
-        SELECT
-          0 as AdGroupDesktopBidModifier,
-          'NA' as AdGroupId,
-          0 as AdGroupMobileBidModifier,
-          'NA' as AdGroupName,
-          'NA' as AdGroupStatus,
-          0 as AdGroupTabletBidModifier,
-          'NA' as BidType,
-          'NA' as BiddingStrategyId,
-          'NA' as BiddingStrategyName,
-          'NA' as BiddingStrategySource,
-          'NA' as BiddingStrategyType,
-          'NA' as CampaignId,
-          'NA' as ContentBidCriterionTypeGroup,
-          0 as CpcBid,
-          0 as CpmBid,
-          0 as CpvBid,
-          0 as EnhancedCpcEnabled,
-          0 asEnhancedCpvEnabled,
-          'NA' as LabelIds,
-          'NA' as Labels,
-          0 as TargetCpa,
-          'NA' as TargetCpaBidSource,
-          'NA' as TrackingUrlTemplate,
-          'NA' as UrlCustomParameters
-        ;;
+      SELECT
+        CURRENT_DATE() as _DATA_DATE,
+        CURRENT_DATE() as _LATEST_DATE,
+        'NA' as ExternalCustomerId,
+        0 as AdGroupDesktopBidModifier,
+        'NA' as AdGroupId,
+        0 as AdGroupMobileBidModifier,
+        'NA' as AdGroupName,
+        'NA' as AdGroupStatus,
+        0 as AdGroupTabletBidModifier,
+        'NA' as BidType,
+        'NA' as BiddingStrategyId,
+        'NA' as BiddingStrategyName,
+        'NA' as BiddingStrategySource,
+        'NA' as BiddingStrategyType,
+        'NA' as CampaignId,
+        'NA' as ContentBidCriterionTypeGroup,
+        0 as CpcBid,
+        0 as CpmBid,
+        0 as CpvBid,
+        false as EnhancedCpcEnabled,
+        false as EnhancedCpvEnabled,
+        'NA' as LabelIds,
+        'NA' as Labels,
+        0 as TargetCpa,
+        'NA' as TargetCpaBidSource,
+        'NA' as TrackingUrlTemplate,
+        'NA' as UrlCustomParameters
+      ;;
   }
 
   dimension: ad_group_desktop_bid_modifier {
